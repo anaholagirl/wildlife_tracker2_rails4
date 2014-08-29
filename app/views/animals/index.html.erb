@@ -1,0 +1,35 @@
+<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <div class="container">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Sightings</a></li>
+        <li><a href="#animals">Animals</a></li>
+        <li><a href="#regions">Regions</a></li>
+        <li><a href="#mysightings">MySightings</a></li>
+      </ul>
+    </div>
+</div>
+<div class="container">
+<h2>Welcome to the Wildlife Tracker! </h2>
+<h3> The latest news on recent sightings in the area!</h3>
+
+<% if !@animals.present? %>
+    <p>You have no animals to list</p>
+<% else %>
+  <% @animals.each do |animal| %>
+  <ul>
+    <li><%= animal.name %><button link_to 'Sightings', animal_sightings_path(animal),:class => "btn btn-small btn-success" %></li>
+  </ul>
+  <% end %>
+<% end %>
+
+<p><a href="animals_new_path"> Create a new animal </a></p>
+<br><br>
+
+<div class="footer">
+<p>Created by Peggy and Linda -  Summer 2014</p>
+<p>Students at <a href="www.Epicodus.com"> Epicodus</a></p>
+
+</div>
+
+</div>
+

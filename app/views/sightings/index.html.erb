@@ -1,0 +1,60 @@
+
+<!-- Static navbar -->
+    <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Sightings</a></li>
+            <li><a href="#animals">Animals</a></li>
+            <li><a href="#regions">Regions</a></li>
+            <li><a href="#mysightings">MySightings</a></li>
+          </ul>
+        </div>
+    </div>
+
+<div class="container">
+<h2>Welcome to the Wildlife Tracker! </h2>
+<h3> The latest news on recent sightings in the area!</h3>
+
+<h2 class="sub-header">Current Sightings</h2>
+          <div class="table-responsive">
+            <table class="table ">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Animal</th>
+                  <th>Region</th>
+                  <th>Latitude</th>
+                  <th>Longitude</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if !@sightings.present? %>
+                    <p>You have no sightings to list</p>
+                <% else %>
+                  <% @sightings.each do |sighting| %>
+
+                    <tr>
+                      <td><%= sighting.date%></td>
+                      <td><%= sighting.animal.name %></td>
+                      <td><%= sighting.region.name %></td>
+                      <td><%= sighting.latitude %></td>
+                      <td><%= sighting.longitude %></td>
+                      <td><%= link_to "Edit", edit_sighting_path(sighting) %></td>
+                      <td><%= link_to "Remove", sighting, method: :delete, data: { confirm: "Are you sure?" } %></td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>
+<br>
+<%= link_to "New sighting", sightings_new_path %>
+<br><br>
+<div class="footer">
+<p> Created by Linda and Peggy - Summer 2014</p>
+</div>
+
+
+</div>
+
+
+
