@@ -1,4 +1,44 @@
 <%= render('/layouts/navbar') %>
 
+<div class="container">
+
 <h1>Here are my wildlife sightings: </h1>
 
+<h2 class="sub-header">Current Sightings</h2>
+          <div class="table-responsive">
+            <table class="table ">
+              <thead>
+                <tr>
+                  <th>Reported By</th>
+                  <th>Date</th>
+                  <th>Animal</th>
+                  <th>Region</th>
+                  <th>Latitude</th>
+                  <th>Longitude</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if !@sightings.present? %>
+                    <p>You have no sightings to list</p>
+                <% else %>
+                  <% @sightings.pname.each do |sighting| %>
+                    <tr>
+                      <td><%= sighting.person_name%></td>
+                      <td><%= sighting.sight_date%></td>
+                      <td><%= Animal.find(sighting.animal_id).name %></td>
+                      <td><%= Region.find(sighting.region_id).name %></td>
+                      <td><%= sighting.latitude %></td>
+                      <td><%= sighting.longitude %></td>
+                      <td><a href="sightings/sighting.id/edit">Edit</a></td>
+                      <td><a href="sightings/sighting.id/destroy">Delete</a></td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>
+<br>
+<p><a href="/sightings/new"> Create a New Sighting </a></p>
+<br><br>
+
+
+</div>

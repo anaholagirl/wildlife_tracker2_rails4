@@ -1,7 +1,14 @@
 class SightingsController < ApplicationController
 
   def index
-    @sightings = Sighting.all
+    @animals = Animal.all
+    @regions = Region.all
+    if params[:person_name]
+      @sightings = Sighting.all.pname(params[:person_name])
+    elsif params[:region_name]
+      @sightings = Sighting.all.rname(params[:region_name])
+    elsif params[:animal_name]
+      @sightings = Sighting.all.aname(params[:animal_name])
     render('sightings/index.html.erb')
   end
 

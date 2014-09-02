@@ -29,8 +29,8 @@
                       <td><%= Region.find(sighting.region_id).name %></td>
                       <td><%= sighting.latitude %></td>
                       <td><%= sighting.longitude %></td>
-                      <td><a href="sightings/sighting.id/edit">Edit</a></td>
-                      <td><a href="sightings/sighting.id/destroy">Delete</a></td>
+                      <td><a href="sightings/<%= sighting.id %>/edit">Edit</a></td>
+                      <td><a href="sightings/<%= sighting.id %>/destroy">Delete</a></td>
                     </tr>
                   <% end %>
                 <% end %>
@@ -38,7 +38,16 @@
             </table>
 <br>
 <p><a href="/sightings/new"> Create a New Sighting </a></p>
-<br><br>
+
+<p>To see all of your sightings, please enter your name:</p>
+<form action="/by_name" method="get">
+  <label for="name">Name</label>
+  <input id="name" name="person_name" type="text" value="<%= @input_name %>">
+  binding.pry
+  <button class= btn btn-small btn-primary>Submit</button>
+</form>
+
+<br
 <div class="footer">
 <p> Created by Linda and Peggy - Summer 2014</p>
 </div>

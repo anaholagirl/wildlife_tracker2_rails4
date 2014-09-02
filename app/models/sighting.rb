@@ -5,4 +5,7 @@ class Sighting < ActiveRecord::Base
   validates :region_id, :presence => true
   validates :sight_date, :presence => true
   validates :person_name, :presence => true
+
+  scope :pname, where('person_name = @input_name')
+
 end
