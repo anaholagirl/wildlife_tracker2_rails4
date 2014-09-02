@@ -6,15 +6,15 @@ class AnimalsController < ApplicationController
   end
 
   def new
-    @animal = Animal.new
+    @animal = Animal.new(params[:animal])
     render ('animals/new.html.erb')
   end
 
   def create
 
-    @animal = Animal.new
-    if animal.save
-      render ('animals/index.html.erb')
+    @animal = Animal.new(params[:animal])
+    if @animal.save
+      redirect_to ('/animals')
     else
       render ('animals/new.html.erb')
     end

@@ -1,6 +1,8 @@
+<%= render('/layouts/navbar') %>
+
 <h2> New Animal </h2>
 
-<% if animal.errors.any? %>
+<% if @animal.errors.any? %>
   <h3>Please fix these errors</h3>
 
   <ul>
@@ -11,7 +13,7 @@
 <%end%>
 
 <form action="/animals" method="post">
-  <label for="name">Date</label>
-  <input id="name" name="name" type="text" value="<%= animal.name %>">
+  <label for="name">Name</label>
+  <input id="name" name="animal[name]" type="text" value="<%= @animal.name %>">
   <button class= btn btn-small btn-primary>Create animal</button>
 </form>

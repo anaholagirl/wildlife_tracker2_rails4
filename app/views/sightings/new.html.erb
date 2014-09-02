@@ -1,3 +1,5 @@
+
+<%= render('/layouts/navbar') %>
 <h2> New Sighting </h2>
 
 <% if @sighting.errors.any? %>
@@ -10,37 +12,31 @@
   </ul>
 <%end%>
 
-<form action="/sightings" method="post">
+<form id="sightings" role="form" action="/sightings" method="post">
   <label for="date">Date</label>
-  <input id="date" name="sight_date" type="date" value="<%= @sighting.sight_date %>" placeholder="YYYY-MM-DD">
+  <input id="date" name="sighting[sight_date]" type="date" value="<%= @sighting.sight_date %>" placeholder="YYYY-MM-DD">
+  <label for="person_name">My Name</label>
+  <input id="person_name" name="sighting[person_name]" type="text" value="<%= @sighting.person_name %>" placeholder="John Doe">
 
 <div style="padding-bottom:20px">
-      Animal: <select form="sightings" name="animal[id]" style="width:100px;margin-right:20px">
-        <% if !@animals.present? %>
-          <p>You have no animals to list</p>
-        <% else %>
+        Animal: <select form="sightings" name="sighting[animal_id]" style="width:100px;margin-right:20px">
           <% @animals.each do |animal| %>
             <option value ="<%=animal.id %>"> <%= animal.name %> </option>
           <% end %>
-          <% end %>
       </select>
 
-      Region: <select name="region[id]" style="width:100px">
-      <% if !@regions.present? %>
-        <p>You have no regions to list</p>
-      <% else %>
+      Region: <select name="sighting[region_id]" style="width:100px">
         <% @regions.each do |region| %>
           <option value ="<%=region.id %>"> <%= region.name %> </option>
         <% end %>
-      <% end %>
       </select>
 </div>
 
 <div class=form-group>
   <label for="latitude">Latitude</label>
-  <input id="latitude" name="latitude" type="text" value="<%= @sighting.latitude %>" >
+  <input id="latitude" name="sighting[latitude]" type="text" value="<%= @sighting.latitude %>" >
   <label for="longitude">Longitude</label>
-  <input id="longitude" name="longitude" type="text" value="<%= @sighting.longitude %>" >
+  <input id="longitude" name="sighting[longitude]" type="text" value="<%= @sighting.longitude %>" >
 </div>
 
   <button class= btn btn-small btn-primary>Create sighting</button>

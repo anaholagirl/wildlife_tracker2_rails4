@@ -6,33 +6,21 @@ class SightingsController < ApplicationController
   end
 
   def new
-    @sighting = Sighting.new
+    @animals = Animal.all
+    @regions = Region.all
+    @sighting = Sighting.new(params[:sighting])
     render ('sightings/new.html.erb')
   end
 
   def create
-
-    @sighting = Sighting.new
-    if sighting.save
-      render ('sightings/index.html.erb')
+    @animals = Animal.all
+    @regions = Region.all
+    @sighting = Sighting.new(params[:sighting])
+    if @sighting.save
+      redirect_to ('/sightings')
     else
       render ('sightings/new.html.erb')
     end
-  end
-
-  def between
-    @sighting = Sighting.where(sighting_start_date < @sighting.date && @sighting.date < sighting_end_date)
-    render ('sightings/index.html.erb')
-  end
-
-  def animal_sighting(animal)
-    @sighting = Sighting.where(sightings.animal.name = animal)
-    render ('sightings/animal_sighting.html.erb')
-  end
-
-  def region_sighting(region)
-    @sighting = Sighting.where(sightings.region.name = region)
-    render ('sightings/region_sighting.html.erb')
   end
 
   def edit
@@ -41,6 +29,8 @@ class SightingsController < ApplicationController
   end
 
   def update
+    @animals = Animal.all
+    @regions = Region.all
     @sighting = Sighting.find(params[:id])
     if @sighting.update(params[:sighting])
       render ('sightings/index.html.erb')
@@ -56,6 +46,10 @@ class SightingsController < ApplicationController
     else
       render ('sightings/index.html.erb')
     end
+  end
+
+  def show
+    @sighting = Sighting.find(params[:id])
   end
 
 

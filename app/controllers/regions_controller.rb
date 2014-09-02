@@ -1,27 +1,27 @@
 class RegionsController < ApplicationController
 
   def index
-    @region = Region.between(params[:regions])
+    @regions = Region.all
     render('regions/index.html.erb')
   end
 
   def new
-    @region = Region.new
-    render ('regions/index.html.erb')
+    @region = Region.new(params[:region])
+    render ('regions/new.html.erb')
   end
 
   def create
 
-    @region = Region.new
-    if region.save
-      render ('regions/index.html.erb')
+    @region = Region.new(params[:region])
+    if @region.save
+      redirect_to ('/regions')
     else
       render ('regions/new.html.erb')
     end
   end
 
   def show
-
+    @region = Region.find(params[:id])
   end
 
   def edit
@@ -44,6 +44,7 @@ class RegionsController < ApplicationController
       render ('regions/delete.html.erb')
     else
       render ('regions/index.html.erb')
+    end
   end
 
 

@@ -1,20 +1,21 @@
+
 <%= render('/layouts/navbar') %>
 
 <div class="container">
 <h2>Welcome to the Wildlife Tracker! </h2>
-<h3> The following are animals sighted and being tracked:</h3>
+<h3> The following are the regions we are tracking:</h3>
 
-<% if !@animals.present? %>
-    <p>You have no animals to list</p>
+<% if !@regions.present? %>
+    <p>You have no regions to list</p>
 <% else %>
-  <% @animals.each do |animal| %>
+  <% @regions.each do |region| %>
   <ul>
-    <li><a href= "sightings/animal"><%= animal.name %></a></li>
+    <li><a href= "sightings/region"><%= region.name %></a></li>
   </ul>
   <% end %>
 <% end %>
 
-<p><a href="/animals/new"> Create a new animal </a></p>
+<p><a href="/regions/new"> Create a new region </a></p>
 <br><br>
 
 <div class="footer">

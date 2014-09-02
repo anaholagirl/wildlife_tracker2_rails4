@@ -1,0 +1,19 @@
+<%= render('/layouts/navbar') %>
+
+<h2> New Region </h2>
+
+<% if @region.errors.any? %>
+  <h3>Please fix these errors</h3>
+
+  <ul>
+    <% @region.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <%end%>
+  </ul>
+<%end%>
+
+<form action="/regions" method="post">
+  <label for="name">Name</label>
+  <input id="name" name="region[name]" type="text" value="<%= @region.name %>">
+  <button class= btn btn-small btn-primary>Create region</button>
+</form>
